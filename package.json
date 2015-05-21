@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "python -m SimpleHTTPServer",
+    "start": "node_modules/http-server/bin/http-server app",
     "test": "node_modules/karma/bin/karma start test/karma.conf.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "http-server": "^0.8.0",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.32",
     "karma-chrome-launcher": "^0.1.12",
