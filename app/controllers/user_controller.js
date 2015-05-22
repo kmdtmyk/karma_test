@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("my.controller")
+angular.module("my.controller.user", [])
 
 
 .controller("UserIndexController", ["$scope", function ($scope){

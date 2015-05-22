@@ -17,9 +17,12 @@ module.exports = function(config) {
     files: [
 		"app/bower_components/angular/angular.js",
 		"app/bower_components/angular-mocks/angular-mocks.js",
+
+        "app/controllers/**/*.js",
+        "app/directives/**/*.js",
+        "app/filters/**/*.js",
         "app/*.js",
-        "app/filters/*.js",
-		"test/*.js"
+		"test/**/*.js"
     ],
 
 
@@ -65,6 +68,7 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: false,
+
 
 	plugins: ['karma-jasmine']
 	
