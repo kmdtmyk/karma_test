@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("myFilter", [])
+angular.module("my.filter", [])
 
 .filter("honorific", function(){
 	return function(name){

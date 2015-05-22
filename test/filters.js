@@ -2,7 +2,7 @@
 
 describe("filter", function(){
 
-	beforeEach(module("myFilter"));
+	beforeEach(module("my.filter"));
 
 	describe("honorific", function(){
 		it("test", inject(function(honorificFilter){
