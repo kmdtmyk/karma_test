@@ -2,13 +2,19 @@
 
 describe("filter", function(){
 
-	beforeEach(module("my.filter"));
+	var filter;
 
-	describe("honorific", function(){
-		it("test", inject(function(honorificFilter){
-			expect(honorificFilter("name")).toBe("name様");
-			expect(honorificFilter("")).toBe("");
-		}));
+	beforeEach(function(){
+		module("my.filter");
+
+		inject(function($filter){
+			filter = $filter("honorific");
+		});
+	});
+
+	it("honorific", function(){
+		expect(filter("name")).toBe("name様");
+		expect(filter("")).toBe("");
 	});
 
 });

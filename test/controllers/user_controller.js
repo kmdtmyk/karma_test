@@ -6,12 +6,37 @@ describe("UserController", function(){
 
 	describe("index", function(){
 
-		it("test", inject(function($controller){
-			var scope = {};
-			var controller = $controller("UserIndexController", {$scope: scope});
-			expect(scope.test).toBe("user");
+		var scope;
+		var controller;
+
+		beforeEach(inject(function($controller){
+			scope = {};
+			controller = $controller("UserIndexController", {$scope: scope});
 		}));
+
+		it("increment", function(){
+			expect(scope.count).toBe(0);
+			scope.increment();
+			expect(scope.count).toBe(1);
+		});
+
 	});
+
+
+	describe("edit", function(){
+
+		var scope;
+		var controller;
+
+		beforeEach(inject(function($controller){
+			scope = {};
+			controller = $controller("UserEditController", {$scope: scope});
+		}));
+
+
+
+	});
+
 
 
 });
