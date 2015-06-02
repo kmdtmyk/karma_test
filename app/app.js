@@ -1,7 +1,7 @@
 "use strict";
 
 angular.module("myApp",
-	["ngRoute", "ngMockE2E", "my.controller", "my.filter", "my.directive", "my.resource"]
+	["ngRoute", "my.controller", "my.filter", "my.directive", "my.resource", "my.mock"]
 )
 
 .config(["$sceProvider", function($sceProvider){
@@ -40,7 +40,7 @@ angular.module("myApp",
 		})
 		.when("/users/new", {
 			templateUrl: "views/users/new.html",
-			//controller: "UserNewController"
+			controller: "UserNewController"
 		})
 		.when("/users/:id", {
 			templateUrl: "views/users/show.html",
@@ -60,25 +60,3 @@ angular.module("myApp",
 
 }])
 
-
-.run(function($httpBackend){
-
-	$httpBackend.whenGET(/^(?!api).*$/).passThrough();
-
-	var users = [
-		{id: 1, name: "user1", email: "user1@example.com"},
-		{id: 2, name: "user2", email: "user2@example.com"},
-		{id: 3, name: "user3", email: "user3@example.com"},
-	];
-
-	$httpBackend.when("GET", 'api/v1/users').respond(function(method, url, data){
-		console.log(arguments);
-		return [200, users, {}];
-	});
-
-	$httpBackend.whenGET(/api\/v1\/users\/\d+/).respond(function(method, url, data){
-		console.log(arguments);
-		return [200, users[0], {}];
-	});
-
-})

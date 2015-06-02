@@ -1,3 +1,7 @@
-views/users/show.html
 
-{{user.name}} / {{user.email}}
+<div ng-show="!user">data not found</div>
+<div ng-show="user">
+	{{user.name}} / {{user.email}}
+</div>
+
+<pre>{{user | json}}</pre>

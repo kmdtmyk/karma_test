@@ -1,9 +1,14 @@
 views/users/new.html
 
-<form>
-	<label>name</label>
-	<input type="text" ng-model="user.name">
+<form ng-submit="submit()">
+	<div>
+		<label>name</label>
+		<input type="text" ng-model="user.name">
+	</div>
 
-	<label>email</label>
-	<input type="text" ng-model="user.email">
+	<div>
+		<label>email</label>
+		<input type="text" ng-model="user.email">
+	</div>
+	<button type="submit">submit</button>
 </form>

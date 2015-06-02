@@ -3,7 +3,9 @@
 describe("UserController", function(){
 
 	var httpBackend;
-	var User;
+	var scope;
+	var controller;
+	var routeParams;
 
 	beforeEach(function(){
 		module("my.controller.user");
@@ -11,38 +13,35 @@ describe("UserController", function(){
 			httpBackend = $httpBackend;
 		});
 
-		inject(function(_User_){
-			User = _User_;
-		});
 	});
 
 	describe("index", function(){
 
-		var scope;
-		var controller;
-
 		beforeEach(inject(function($controller){
 			scope = {};
-			controller = $controller("UserIndexController", {$scope: scope});
+			controller = $controller("UserIndexController", {
+				$scope: scope,
+				$routeParams: {}
+			});
 		}));
 
 		
 		it("user list", function(){
-			//expect(scope.count).toBe(0);
-			//scope.increment();
-			//expect(scope.count).toBe(1);
-			var data = [
+
+			var users = [
 				{id: 1, name: "user1"},
 				{id: 2, name: "user2"},
 				{id: 3, name: "user3"},
 			];
 
-			httpBackend.expectGET("api/v1/users").respond(data);
+			httpBackend.expectGET("api/v1/users").respond(users);
 
-			var users = User.query();
-			expect(users.length).toEqual(0);
-			// httpBackend.flush();
-			// expect(users.length).toEqual(3);
+			//var users = User.query();
+			expect(scope.users.length).toEqual(0);
+			httpBackend.flush();
+			expect(scope.users.length).toEqual(3);
+			expect(angular.equals(scope.users, users)).toBeTruthy();
+
 			//expect(users[0]).toEqual(data[0]);
 
 		});
@@ -51,16 +50,39 @@ describe("UserController", function(){
 	});
 
 
-	describe("edit", function(){
+	describe("show", function(){
 
-		var scope;
-		var controller;
+		beforeEach(inject(function($controller){
+			scope = {};
+			routeParams = {id: 1};
+			controller = $controller("UserShowController", {
+				$scope: scope,
+				$routeParams: routeParams
+			});
+		}));
+
+
+		it("user show", function(){
+
+			var user = 	{id: 1, name: "user1"};
+
+			httpBackend.expectGET("api/v1/users/1").respond(user);
+
+			expect(scope.user).toBeUndefined();
+			httpBackend.flush();
+			expect(angular.equals(scope.user, user)).toBeTruthy();
+
+		});
+
+	});
+
+
+	describe("edit", function(){
 
 		beforeEach(inject(function($controller){
 			scope = {};
 			controller = $controller("UserEditController", {$scope: scope});
 		}));
-
 
 
 	});
