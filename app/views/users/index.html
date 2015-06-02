@@ -2,7 +2,7 @@
 
 views/users/index.html
 
-{{test}}
 
-
-<button ng-click="increment()">{{count}}</button>
+<ul ng-repeat="user in users">
+	<li><a href="#/users/{{user.id}}">{{user.name}}</a> / {{user.email}}</li>
+</ul>
